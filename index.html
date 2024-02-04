@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en-us" class="m-0 p-0 box-border font-ubuntuRegular">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0 maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="author" content="whoami">
+        <meta name="description" content="A modern music player">
+        <link rel="stylesheet" href="./src/stylesheets/css/style.css">
+        <link rel="shortcut icon" href="./assets/icons/favicon.ico" type="image/x-icon">
+        <title>Music Player</title>
+    </head>
+
+    <body class="min-h-screen overflow-x-hidden flex justify-center items-center">
+        <svg class="hidden">
+            <symbol id="unliked" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+            </symbol>
+            <symbol id="liked" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+            </symbol>
+            <symbol id="repeat" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
+            </symbol>
+            <symbol id="backward" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9.195 18.44c1.25.714 2.805-.189 2.805-1.629v-2.34l6.945 3.968c1.25.715 2.805-.188 2.805-1.628V8.69c0-1.44-1.555-2.343-2.805-1.628L12 11.029v-2.34c0-1.44-1.555-2.343-2.805-1.628l-7.108 4.061c-1.26.72-1.26 2.536 0 3.256l7.108 4.061Z" />
+            </symbol>
+            <symbol id="chevron" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.72 12.53a.75.75 0 0 1 0-1.06l7.5-7.5a.75.75 0 1 1 1.06 1.06L9.31 12l6.97 6.97a.75.75 0 1 1-1.06 1.06l-7.5-7.5Z" clip-rule="evenodd" />
+            </symbol>
+            <symbol id="play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />
+            </symbol>
+            <symbol id="pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M6.75 5.25a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75V5.25Zm7.5 0A.75.75 0 0 1 15 4.5h1.5a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H15a.75.75 0 0 1-.75-.75V5.25Z" clip-rule="evenodd" />
+            </symbol>
+        </svg>
+        <main class="z-20">
+            <section>
+                <div class="container">
+                    <div class="player-box flex flex-col justify-center items-center rounded-2xl bg-white/40 backdrop-blur-sm p-10">
+                        <div class="flex flex-col justify-center items-center gap-y-10 sm:gap-x-20 pb-10 border-b-2 border-black/40 sm:flex-row sm:justify-between">
+                            <div class="flex flex-col justify-center items-center gap-10 sm:flex-row">
+                                <div class="cover-image w-48 h-48 rounded-full"></div>
+                                <div class="flex flex-col justify-center items-center sm:items-start gap-y-5 child:capitalize child:text-black child:text-base child:font-ubuntuMedium"><span id="status">-----</span><span id="music-name" class="inline-block w-[178px] text-center sm:text-start"></span><span id="artist"></span></div>
+                            </div>
+                            <div class="sm:self-start flex sm:flex-col justify-start items-center gap-5">
+                                <div id="like-button"><svg class="w-6 h-6 text-red-600">
+                                    <use id="like" href="#unliked"></use>
+                                </svg></div>
+                                <div id="repeat-button"><svg class="loop w-6 h-6">
+                                    <use href="#repeat"></use>
+                                </svg></div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col justify-center items-center mt-7 w-full">
+                            <div class="w-full"><input type="range" class="w-full h-[2px] cursor-pointer" id="time-line" value=0></div>
+                            <div class="text-base text-black font-ubuntuMedium flex justify-between items-center w-full mt-2"><span id="current-time"></span><span id="duration"></span></div>
+                            <div class="flex justify-center items-center gap-x-2 sm:gap-x-5 mt-5">
+                                <div id="backward" class="control-btn" title="Backward"><svg class="w-5 h-5">
+                                    <use href="#backward"></use>
+                                </svg></div>
+                                <div id="backward-second" class="control-btn" title="-5s"><svg class="w-5 h-5">
+                                    <use href="#chevron"></use>
+                                </svg></div>
+                                <div id="play-pause" class="control-btn w-12 h-12 mx-3" title="Play"><svg class="w-6 h-6">
+                                    <use href="#play" id="play-pause-icon"></use>
+                                </svg></div>
+                                <div id="forward-second" class="control-btn" title="+5s"><svg class="w-5 h-5 rotate-180">
+                                    <use href="#chevron"></use>
+                                </svg></div>
+                                <div id="forward" class="control-btn" title="Forward"><svg class="w-5 h-5 rotate-180">
+                                    <use href="#backward"></use>
+                                </svg></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <div class="overlay fixed inset-0 w-full h-full backdrop-blur-md z-10"></div><audio class="music hidden"></audio>
+        <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+        <script src="./src/scripts/javascript/script.js"></script>
+    </body>
+
+</html>

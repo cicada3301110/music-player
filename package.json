@@ -1,0 +1,23 @@
+{
+  "name": "music-player",
+  "version": "1.0.0",
+  "description": "Music Player",
+  "main": "script.js",
+  "scripts": {
+    "watch": "npx tailwindcss -i ./src/stylesheets/css/input.css -o ./src/stylesheets/css/style.css --watch"
+  },
+  "keywords": [
+    "music-player",
+    "music",
+    "song"
+  ],
+  "author": "whoami",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "sweetalert2": "^11.6.13"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
