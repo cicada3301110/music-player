@@ -16,8 +16,5 @@
   "dependencies": {
     "jquery": "^3.7.1",
     "sweetalert2": "^11.6.13"
-  },
-  "devDependencies": {
-    "tailwindcss": "^3.4.1"
   }
 }
